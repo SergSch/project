@@ -42,7 +42,7 @@ const FiltrationBar = ({ none, setCheck }) => {
           type="checkbox"
           id="check"
           className={classes.checkbox}
-          onChange={(e) => setCheck(!e.target.checked)}
+          onChange={(e) => setCheck(e.target.checked)}
         />
         <span className={classes.fake}></span>
       </label>

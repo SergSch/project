@@ -23,7 +23,6 @@ export default function AllProductsPage() {
   const dispatch = useDispatch();
 
   const [check, setCheck] = useState(false);
-  console.log(check);
 
   const { data, isLoading, isError, error } = useGetAllGoodsQuery();
   const { minPrice, maxPrice, sorted } = useSelector((store) => store.filter);
@@ -40,6 +39,12 @@ export default function AllProductsPage() {
   // Get number of passed category for initialization group of products
   const params = new URLSearchParams(location.search);
   let category = params.get('category');
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const category = params.get('category');
+    setCheck(category === '2');
+  }, [location.search]);
 
   // Get array discounted products
   const filteredBySales = products?.filter(
@@ -71,6 +76,7 @@ export default function AllProductsPage() {
                 <Line short />
                 <StartBlockButton
                   textSmallBtn={location?.state?.categoryTitle}
+                  dontClick
                 />
               </>
             )}
@@ -99,39 +105,38 @@ export default function AllProductsPage() {
             </div>
           ) : (
             <div className={classes.productsWrapper}>
-              {location &&
-                filteredByCategory.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
-                  >
-                    <SingleProductCard
+              {check || category === '2'
+                ? filteredBySales.map((product) => (
+                    <Link
                       key={product.id}
-                      {...product}
-                      handleAddToCart={(event) =>
-                        handleAddToCart(event, product)
-                      }
-                    />
-                  </Link>
-                ))}
-              {category &&
-                category === '2' &&
-                filteredBySales.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
-                  >
-                    <SingleProductCard
+                      to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
+                    >
+                      <SingleProductCard
+                        key={product.id}
+                        {...product}
+                        handleAddToCart={(event) =>
+                          handleAddToCart(event, product)
+                        }
+                      />
+                    </Link>
+                  ))
+                : filteredByCategory.map((product) => (
+                    <Link
                       key={product.id}
-                      {...product}
-                      handleAddToCart={(event) =>
-                        handleAddToCart(event, product)
-                      }
-                    />
-                  </Link>
-                ))}
+                      to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
+                    >
+                      <SingleProductCard
+                        key={product.id}
+                        {...product}
+                        handleAddToCart={(event) =>
+                          handleAddToCart(event, product)
+                        }
+                      />
+                    </Link>
+                  ))}
               {category &&
                 category === '1' &&
+                !check &&
                 products?.map((product) => (
                   <Link
                     key={product.id}

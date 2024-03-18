@@ -35,7 +35,6 @@ const SingleProductPage = () => {
   );
 
   const { productsInCart } = useSelector((store) => store.cart);
-  console.log(productsInCart);
 
   const dispatch = useDispatch();
   const handleAddToCart = (data) => {
@@ -56,6 +55,12 @@ const SingleProductPage = () => {
     data && data.length > 0
       ? Math.round(((price - discountPrice) / price) * 100)
       : null;
+
+  // Checking of existens of current product in the cart
+  const existingProduct = productsInCart?.find(
+    (product) => data && data.length > 0 && product.id === data[0]?.id
+  );
+  const quantityInCart = existingProduct ? existingProduct.quantity : 0;
 
   return (
     <div className={`${classes.wrap} ${theme === 'dark' ? classes.dark : ''}`}>
@@ -122,7 +127,8 @@ const SingleProductPage = () => {
                       handleDecreaseProduct(productsInCart[0]);
                     }
                   }}
-                  quantity={productsInCart[0]?.quantity}
+                  // quantity={productsInCart?.quantity}
+                  quantity={quantityInCart}
                 />
                 <AddProductBtn
                   text="Add to cart"

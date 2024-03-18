@@ -17,6 +17,7 @@ import ProductAndCartTitle from '../../components/ProductAndCartTitle/ProductAnd
 import TitleH2 from '../../components/TitleH2/TitleH2';
 import ProductModal from '../../components/ProductModal/ProductModal';
 import whiteCross from '../../assets/images/icons/whiteCross.svg';
+import CartForm from '../../components/CartForm/CartForm';
 
 const CartPage = () => {
   // opened page is displayed at the top
@@ -118,14 +119,15 @@ const CartPage = () => {
                   <h4 className={classes.greyTitle}>Total</h4>
                   <TitleH2 text={`$${totalSum.toFixed(2)}`} />
                 </div>
-                <button
+                <CartForm cart={{ handleClearCart, setModalActive }} />
+                {/* <button
                   onClick={() => {
                     handleClearCart();
                     setModalActive(true);
                   }}
                 >
                   Order
-                </button>
+                </button> */}
               </div>
             </div>
           )}
