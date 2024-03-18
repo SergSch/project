@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Line from '../../UI/Line/Line';
 import TitleH2 from '../TitleH2/TitleH2';
 import classes from './TitleBlockWithLine.module.css';
-import SmallButton from '../../UI/SmallButton/SmallButton';
+import StartBlockButton from '../../UI/StartBlockButton/StartBlockButton';
 
 const TitleBlockWithLine = ({ text, textSmallBtn, link }) => {
   return (
@@ -12,7 +12,7 @@ const TitleBlockWithLine = ({ text, textSmallBtn, link }) => {
         <Line />
         <div className={classes.topSmallBtn}>
           <Link to={link}>
-            <SmallButton textSmallBtn={textSmallBtn} />
+            <StartBlockButton textSmallBtn={textSmallBtn} />
           </Link>
         </div>
       </div>

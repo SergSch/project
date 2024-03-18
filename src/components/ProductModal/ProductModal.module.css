@@ -19,7 +19,8 @@
   pointer-events: all;
 }
 
-.content {
+.content,
+.discountModal {
   border-radius: 10px;
   max-height: 610px;
   max-width: 900px;
@@ -33,7 +34,13 @@
   overflow: hidden;
 }
 
-.content.active {
+.discountModal {
+  max-width: 548px;
+  max-height: 664px;
+}
+
+.content.active,
+.discountModal.active {
   transform: scale(1);
 }
 
@@ -62,14 +69,19 @@
   .content > * {
     max-height: 298px;
   }
+  .discountModal {
+    max-width: 440px;
+    max-height: 634px;
+  }
 }
 
 @media (max-width: 479px) {
   .content {
     width: 320px;
-    max-height: 216px;
   }
-  .content > * {
-    max-height: 216px;
+
+  .discountModal {
+    max-width: 320px;
+    max-height: 564px;
   }
 }

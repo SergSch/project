@@ -13,6 +13,12 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 30px;
 }
+
+.breadCrumbs {
+  display: flex;
+  align-items: center;
+  width: 254px;
+}
 /* Dark mode */
 .dark {
   background-color: var(--black);
@@ -36,6 +42,9 @@
 @media (max-width: 767px) {
   .categoryWrapper {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .breadCrumbs {
+    display: none;
   }
 }
 @media (max-width: 479px) {

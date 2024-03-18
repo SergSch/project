@@ -1,6 +1,8 @@
 import classes from './Line.module.css';
 
-const Line = () => {
-  return <div className={classes.line}></div>;
+const Line = ({ short }) => {
+  return (
+    <div className={classes.line} style={{ width: short ? '16px' : '' }}></div>
+  );
 };
 export default Line;

@@ -5,8 +5,13 @@ import { Link } from 'react-router-dom';
 import MainButton from './../../UI/MainButton/MainButton';
 import TitleH2 from '../../components/TitleH2/TitleH2';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const NotFoundPage = () => {
+  // opened page is displayed at the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { theme } = useSelector((state) => state.theme);
 
   return (

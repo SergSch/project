@@ -12,7 +12,7 @@
 }
 .box {
   padding: 32px;
-  background-color: #f1f3f4;
+  background-color: var(--light-grey);
   border-radius: 12px;
 }
 
@@ -42,6 +42,21 @@
   display: flex;
   gap: 20px;
   margin-top: 16px;
+}
+
+/* Dark mode */
+.dark {
+  background-color: var(--black);
+}
+
+.lightDark {
+  background-color: var(--footerItemsBG);
+}
+.white {
+  color: var(--white);
+}
+.menuDark {
+  filter: invert(1);
 }
 
 /* Mobile */
@@ -88,19 +103,4 @@
   .text {
     font-size: 28px;
   }
-}
-
-/* Dark mode */
-.dark {
-  background-color: var(--black);
-}
-
-.lightDark {
-  background-color: var(--footerItemsBG);
-}
-.white {
-  color: var(--white);
-}
-.menuDark {
-  filter: invert(1);
 }

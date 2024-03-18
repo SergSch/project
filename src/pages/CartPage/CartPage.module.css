@@ -1,0 +1,161 @@
+.wrapper {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.prodAndOrdersBlock {
+  display: flex;
+  gap: 32px;
+}
+.productsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: clamp(34.375rem, -0.686rem + 56.1vw, 48.75rem);
+}
+
+.ordersBlock {
+  flex-grow: 1;
+  background-color: var(--light-grey);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.greyTitle {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 130%;
+  color: var(--grey);
+}
+
+.totalBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.paragraph {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--black);
+}
+
+.bottomSmallBtn {
+  display: none;
+}
+
+.modalWrapper {
+  border-radius: 10px;
+  padding: 32px;
+  width: 548px;
+  height: 236px;
+  background-color: var(--green);
+}
+.titleModalBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.titleModal {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 110%;
+  color: var(--white);
+}
+
+.whiteCross {
+  cursor: pointer;
+}
+
+.descrModal {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 110%;
+  color: var(--white);
+}
+
+/* Dark mode */
+
+.dark {
+  background-color: var(--black);
+}
+
+.darkBG {
+  background-color: var(--footerItemsBG);
+}
+
+.textDark {
+  color: var(--white);
+}
+
+/* Mobile */
+@media (max-width: 1439px) {
+  .prodAndOrdersBlock {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .productsBlock,
+  .ordersBlock {
+    width: 100%;
+  }
+  .ordersBlock {
+    padding: 32px 20px;
+  }
+}
+
+@media (max-width: 999px) {
+  .prodAndOrdersBlock {
+    grid-template-columns: 1fr;
+  }
+  .greyTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ordersBlock {
+    padding: 24px 20px;
+  }
+  .greyTitle {
+    font-size: 28px;
+  }
+  .modalWrapper {
+    padding: 24px 20px;
+    width: 440px;
+    height: 200px;
+  }
+  .titleModal {
+    font-size: 36px;
+  }
+  .descrModal {
+    font-size: 18px;
+  }
+}
+@media (max-width: 767px) {
+  .bottomSmallBtn {
+    display: block;
+    margin: 0 auto;
+  }
+  .modalWrapper {
+    padding: 24px 20px 76px 20px;
+    width: 320px;
+    height: 315px;
+  }
+  .titleModal {
+    font-size: 28px;
+    align-self: flex-start;
+  }
+  .descrModal {
+    font-size: 18px;
+  }
+  .titleModalBlock {
+    flex-direction: column-reverse;
+  }
+  .whiteCross {
+    width: 40px;
+    aspect-ratio: 1;
+    align-self: end;
+  }
+}

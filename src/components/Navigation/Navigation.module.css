@@ -13,10 +13,27 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 130%;
+  transition: all 0.3s ease;
 }
-.link {
+.text:hover {
+  transform: scale(1.05);
+}
+.light {
   color: var(--black);
 }
+.link {
+  transition: all 0.2s ease;
+}
+.link:hover {
+  color: var(--green);
+}
+
+/* Dark Mode */
+
+.wrapperDark {
+  background-color: var(--black);
+}
+
 .dark {
   color: var(--white);
 }
@@ -67,10 +84,4 @@
   .text {
     font-size: 18px;
   }
-}
-
-/* Dark Mode */
-
-.wrapperDark {
-  background-color: var(--black);
 }

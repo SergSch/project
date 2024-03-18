@@ -18,6 +18,31 @@
   opacity: 0.9;
 }
 
+.btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--grey-divider);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 126%;
+  color: var(--grey);
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn.dontActive {
+  color: var(--black);
+}
+
+/* Dark mode */
+.btn.dontActive.dark {
+  color: var(--white);
+}
+
 /* Mobile */
 
 @media (max-width: 767px) {
@@ -25,11 +50,13 @@
     padding: 12px 52px;
     font-size: 18px;
   }
+  .btn {
+    font-size: 14px;
+  }
 }
 
-@media (max-width: 767px) {
-  .wrapper {
-    padding: 12px 52px;
-    font-size: 18px;
+@media (max-width: 479px) {
+  .btn {
+    padding: 12px 24px;
   }
 }

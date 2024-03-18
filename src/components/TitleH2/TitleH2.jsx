@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 const TitleH2 = ({ text }) => {
   const { theme } = useSelector((state) => state.theme);
   return (
-    <div className={`${classes.title} ${theme === 'dark' ? classes.dark : ''}`}>
+    <h2 className={`${classes.title} ${theme === 'dark' ? classes.dark : ''}`}>
       {text}
-    </div>
+    </h2>
   );
 };
+
 export default TitleH2;

@@ -1,19 +1,29 @@
 import { Link } from 'react-router-dom';
 import { useGetAllGoodsQuery } from '../../../store/reducers/apiGoodsSlice';
 import classes from './SalesBlock.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import TitleBlockWithLine from '../../../components/TitleBlockWithLine/TitleBlockWithLine';
-import SmallButton from '../../../UI/SmallButton/SmallButton';
 import SingleProductCard from '../../../components/SingleProductCard/SingleProductCard';
 import { ROUTES } from '../../../utils/routes';
+import StartBlockButton from '../../../UI/StartBlockButton/StartBlockButton';
+import { addProduct, countTotalSum } from '../../../store/reducers/cartSlice';
+import toast from 'react-hot-toast';
 
 const SalesBlock = () => {
   const { data } = useGetAllGoodsQuery();
   const { theme } = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
 
+  // Get 5 random products with discount
   const discountedProducts = data?.filter((product) => product.discont_price);
   const shuffledProducts = discountedProducts?.sort(() => Math.random() - 0.5);
-  console.log(shuffledProducts);
+
+  const handleAddToCart = (event, product) => {
+    event.preventDefault();
+    dispatch(addProduct(product));
+    dispatch(countTotalSum());
+    toast.success('Added to Cart successfully');
+  };
 
   return (
     <div className={` ${theme === 'dark' ? classes.dark : ''}`}>
@@ -22,16 +32,24 @@ const SalesBlock = () => {
           <TitleBlockWithLine
             text="Sale"
             textSmallBtn="All sales"
-            link={ROUTES.ALLSALES}
+            link={`${ROUTES.ALLPRODUCTS}?category=2`}
           />
           <div className={classes.salesCardWrapper}>
             {shuffledProducts?.slice(0, 4).map((product) => (
-              <SingleProductCard key={product.id} {...product} />
+              <Link
+                key={product.id}
+                to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
+              >
+                <SingleProductCard
+                  {...product}
+                  handleAddToCart={(event) => handleAddToCart(event, product)}
+                />
+              </Link>
             ))}
           </div>
           <div className={classes.bottomSmallBtn}>
-            <Link to={ROUTES.ALLSALES}>
-              <SmallButton textSmallBtn="All sales" />
+            <Link to={`${ROUTES.ALLPRODUCTS}?category=2`}>
+              <StartBlockButton textSmallBtn="All sales" />
             </Link>
           </div>
         </div>

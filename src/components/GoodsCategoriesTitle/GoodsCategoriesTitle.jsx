@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 const GoodsCategoriesTitle = ({ text, footer }) => {
   const { theme } = useSelector((state) => state.theme);
+
   return (
     <h4
       className={`${

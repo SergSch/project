@@ -1,3 +1,7 @@
+.wrap {
+  border-bottom: 1px solid var(--grey-divider);
+}
+
 .wrapper {
   padding: 30px 0;
   display: flex;
@@ -29,41 +33,80 @@
 .close {
   display: none;
 }
+.img {
+  fill: white;
+  transition: fill 0.3s;
+  cursor: pointer;
+}
+
+.modalWrap {
+  width: 548px;
+  height: 664px;
+  padding: 32px;
+  background-color: var(--green);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.titleBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.titleH3 {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 110%;
+  color: var(--white);
+}
+
+.closeModal {
+  cursor: pointer;
+}
+
+.btn {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+.cartWrapper {
+  position: relative;
+}
+
+.spanQuantity {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 90%;
+  text-align: center;
+  color: var(--white);
+}
 
 /* Mobile Version */
 
-@media (max-width: 767px) {
-  .imgBlock {
-    gap: 11px;
-  }
-  .imgBlock img {
-    width: 32px;
-    height: 32px;
-  }
-  .menu {
-    display: block;
-  }
-  .close {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .nav_wrap {
-    position: relative;
-    padding-top: 80px;
-    padding-left: 32px;
-    position: fixed;
-    top: 0;
-    right: -282px;
-    width: 282px;
-    height: 100%;
-    background-color: var(--white);
-    transition: transform 0.3s linear;
-    z-index: 5;
-  }
-  .nav_wrap.active {
-    transform: translateX(-100%);
+@media (max-width: 1439px) {
+  .spanQuantity {
+    width: 23px;
+    height: 23px;
   }
 }
 
@@ -87,12 +130,15 @@
   }
   .menu {
     display: block;
+    cursor: pointer;
   }
+
   .close {
     display: block;
     position: absolute;
     top: 20px;
     right: 20px;
+    cursor: pointer;
   }
   .nav_wrap {
     position: relative;
@@ -107,8 +153,22 @@
     transition: transform 0.3s linear;
     z-index: 5;
   }
+
   .nav_wrap.active {
     transform: translateX(-100%);
+  }
+  .modalWrap {
+    padding: 20px;
+    width: 440px;
+    height: 634px;
+  }
+  .titleH3 {
+    font-size: 36px;
+  }
+  .spanQuantity {
+    width: 17px;
+    height: 17px;
+    font-size: 8px;
   }
 }
 
@@ -116,6 +176,17 @@
   .nav_wrap {
     right: -220px;
     width: 220px;
+  }
+  .titleH3 {
+    font-size: 28px;
+  }
+  .modalWrap {
+    width: 320px;
+    height: 564px;
+  }
+  .titleBlock {
+    flex-direction: column-reverse;
+    align-items: end;
   }
 }
 

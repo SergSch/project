@@ -11,12 +11,20 @@
 }
 
 /* Mobile */
+@media (max-width: 999px) {
+  .wrapper {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    gap: 16px;
+  }
+}
+
 @media (max-width: 479px) {
   .topSmallBtn {
     display: none;
-  }
-  .bottomSmallBtn {
-    display: block;
-    margin: 0 auto;
   }
 }

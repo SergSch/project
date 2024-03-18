@@ -4,6 +4,7 @@
   font-size: 20px;
   line-height: 130%;
   color: var(--black);
+  word-break: break-all;
 }
 .footerTitle {
   color: var(--grey);
@@ -15,7 +16,7 @@
 
 /* Mobile */
 
-@media (max-width: 479px) {
+@media (max-width: 767px) {
   .title,
   .footerTitle {
     font-size: 18px;

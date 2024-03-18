@@ -1,6 +1,10 @@
 import classes from './DayDiscount.module.css';
 
-const DayDiscount = ({ size }) => {
-  return <div className={classes.wrapper}>1 day discount!</div>;
+const DayDiscount = ({ size, onClick }) => {
+  return (
+    <button className={classes.wrapper} onClick={onClick}>
+      1 day discount!
+    </button>
+  );
 };
 export default DayDiscount;

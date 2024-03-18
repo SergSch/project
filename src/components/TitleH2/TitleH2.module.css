@@ -3,6 +3,7 @@
   font-size: 64px;
   line-height: 110%;
   color: var(--black);
+  min-width: fit-content;
 }
 
 /* Dark mode */
@@ -22,11 +23,13 @@
 @media (max-width: 767px) {
   .title {
     font-size: 48px;
+    min-width: unset;
   }
 }
 
 @media (max-width: 479px) {
   .title {
     font-size: 40px;
+    min-width: fit-content;
   }
 }

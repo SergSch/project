@@ -13,8 +13,12 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import filterReducer from './reducers/filterSlice';
+import cartReducer from './reducers/cartSlice';
 
 const rootReducer = combineReducers({
+  cart: cartReducer,
+  filter: filterReducer,
   theme: themeReducer,
   [apiCatigoriesSlice.reducerPath]: apiCatigoriesSlice.reducer,
   [apiGoodsSlice.reducerPath]: apiGoodsSlice.reducer,

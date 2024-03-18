@@ -6,15 +6,26 @@
   align-items: center;
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--grey-divider);
 }
 
 .wrapper {
   position: relative;
-  width: 316px;
+  width: 100%;
   height: 284px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.modalWrapper {
+  position: relative;
+  width: 100%;
+  height: 284px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: var(--white);
 }
 
 .elemDiscontWrap {
@@ -33,18 +44,36 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  border: 1px solid var(--grey-divider);
+  border-top: 1px solid var(--grey-divider);
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   padding: 20px 32px 32px;
-  width: 316px;
+  width: 100%;
   height: 138px;
+  background-color: var(--white);
 }
 
 .priceBlock {
   display: flex;
   align-items: flex-end;
   gap: 16px;
+}
+
+.wrapperIcons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.img {
+  fill: white;
+  transition: fill 0.3s;
+  cursor: pointer;
+}
+
+.img:hover {
+  fill: black;
 }
 
 /* Dark mode */
@@ -61,7 +90,6 @@
   .aboutBlock {
     gap: 12px;
     padding: 20px;
-    width: 225px;
     height: 148px;
   }
 }
@@ -72,7 +100,6 @@
     height: 250px;
   }
   .aboutBlock {
-    width: 354px;
     height: 122px;
   }
 }
@@ -83,7 +110,6 @@
     height: 220px;
   }
   .aboutBlock {
-    width: 210px;
     height: 138px;
   }
 }
@@ -94,7 +120,9 @@
     height: 220px;
   }
   .aboutBlock {
-    width: 320px;
     height: 115px;
+  }
+  .modalWrapper {
+    height: 220px;
   }
 }

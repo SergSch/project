@@ -1,0 +1,8 @@
+<svg viewBox="0 0 8.61 9.48">
+        <path class="fil0 str0" fill-rule="nonzero" stroke-width="0.38" stroke-miterlimit="22.9256" d="M0.99 2.56l-0.78 6.73 8.18 0 -0.02 -0.2 -0.76 -6.53c-2.2,0 -4.41,0 -6.62,0z" stroke="#000"></path>
+        <path class="fil1" d="M6.25 3.12c0.11,0 0.2,0.09 0.2,0.2 0,0.11 -0.09,0.2 -0.2,0.2 -0.11,0 -0.2,-0.09 -0.2,-0.2 0,-0.11 0.09,-0.2 0.2,-0.2z" stroke="#000"></path>
+        <line class="fil0 str0" fill-rule="nonzero" stroke-width="0.38" stroke-miterlimit="22.9256" x1="2.36" y1="3.21" x2="2.35" y2="2.56" stroke="#000"></line>
+        <path class="fil0 str0" fill-rule="nonzero" stroke-width="0.38" stroke-miterlimit="22.9256" d="M6.25 2.56l-3.9 0 0.01 -0.45c0,-1.07 0.86,-1.92 1.94,-1.92 1.08,0 1.95,0.85 1.95,1.92l0 0.45z" stroke="#000" fill="transparent"></path>
+        <path class="fil1" d="M2.36 3.12c0.1,0 0.2,0.08 0.2,0.18 0,0.1 -0.08,0.18 -0.2,0.18 -0.12,0 -0.2,-0.08 -0.2,-0.18 0,-0.1 0.08,-0.18 0.2,-0.18z" stroke="#000"></path>
+        <line class="fil0 str0" fill-rule="nonzero" stroke-width="0.38" stroke-miterlimit="22.9256" x1="6.26" y1="3.21" x2="6.25" y2="2.56" stroke="#000"></line>
+    </svg>
