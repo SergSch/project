@@ -120,14 +120,6 @@ const CartPage = () => {
                   <TitleH2 text={`$${totalSum.toFixed(2)}`} />
                 </div>
                 <CartForm cart={{ handleClearCart, setModalActive }} />
-                {/* <button
-                  onClick={() => {
-                    handleClearCart();
-                    setModalActive(true);
-                  }}
-                >
-                  Order
-                </button> */}
               </div>
             </div>
           )}

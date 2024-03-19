@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ShowMoreAndLessText from '../../components/ShowMoreAndLessText/ShowMoreAndLessText';
 import ProductModal from '../../components/ProductModal/ProductModal';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../utils/constants';
 import {
   addProduct,
@@ -20,6 +20,10 @@ import {
   decreaseProduct,
 } from '../../store/reducers/cartSlice';
 import toast from 'react-hot-toast';
+import StartBlockButton from '../../UI/StartBlockButton/StartBlockButton';
+import Line from '../../UI/Line/Line';
+import { ROUTES } from '../../utils/routes';
+import { useGetAllCategoriesQuery } from '../../store/reducers/apiCatigoriesSlice';
 
 const SingleProductPage = () => {
   // opened page is displayed at the top
@@ -30,8 +34,15 @@ const SingleProductPage = () => {
   const { theme } = useSelector((state) => state.theme);
   const [modalActive, setModalActive] = useState(false);
   const { id } = useParams();
+
   const { data, isLoading, isError, error } = useGetSingleProductQuery(
     Number(id)
+  );
+
+  // Get category name for breadCrumbs
+  const { data: categoriesData } = useGetAllCategoriesQuery();
+  const categoryName = categoriesData?.find(
+    (category) => category.id === (data && data[0]?.categoryId)
   );
 
   const { productsInCart } = useSelector((store) => store.cart);
@@ -72,7 +83,28 @@ const SingleProductPage = () => {
       {isError ? <h3>Your page is {error.data.error}</h3> : null}
       <div className="container">
         <div className={classes.wrapper}>
-          <div className="breadCrumbs"></div>
+          <div className={classes.breadCrumbs}>
+            <Link to={ROUTES.HOME}>
+              <StartBlockButton textSmallBtn="Main Page" />
+            </Link>
+            <Line short />
+            <Link to={ROUTES.CATEGORIES}>
+              <StartBlockButton textSmallBtn="Categories" />
+            </Link>
+            <Line short />
+            <Link
+              key={categoryName?.id}
+              state={{
+                categoryId: categoryName?.id,
+                categoryTitle: categoryName?.title,
+              }}
+              to={ROUTES.ALLPRODUCTS}
+            >
+              <StartBlockButton textSmallBtn={categoryName?.title} />
+            </Link>
+            <Line short />
+            <StartBlockButton textSmallBtn={data && data[0]?.title} dontClick />
+          </div>
           {isLoading ? (
             <div className="loading">
               <div className="loading_content"></div>

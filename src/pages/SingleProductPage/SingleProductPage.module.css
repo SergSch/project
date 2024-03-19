@@ -5,6 +5,12 @@
   gap: 40px;
 }
 
+.breadCrumbs {
+  display: flex;
+  align-items: center;
+  max-width: max-content;
+}
+
 .mainBlock {
   display: grid;
   grid-template-areas:
