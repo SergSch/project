@@ -15,8 +15,10 @@ import {
 import storage from 'redux-persist/lib/storage';
 import filterReducer from './reducers/filterSlice';
 import cartReducer from './reducers/cartSlice';
+import favouritesReducer from './reducers/favouritesSlice';
 
 const rootReducer = combineReducers({
+  favourites: favouritesReducer,
   cart: cartReducer,
   filter: filterReducer,
   theme: themeReducer,

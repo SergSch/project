@@ -58,8 +58,8 @@ const FiltrationBar = ({ none, setCheck }) => {
           onChange={(event) => dispatch(sortedChange(event.target.value))}
         >
           <option>by default</option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
+          <option value="asc">Ascending by price</option>
+          <option value="desc">Descending by price</option>
         </select>
       </div>
     </form>

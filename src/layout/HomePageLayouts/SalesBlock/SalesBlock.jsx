@@ -8,13 +8,18 @@ import { ROUTES } from '../../../utils/routes';
 import StartBlockButton from '../../../UI/StartBlockButton/StartBlockButton';
 import { addProduct, countTotalSum } from '../../../store/reducers/cartSlice';
 import toast from 'react-hot-toast';
+import {
+  addFavouritesItem,
+  deleteFavouritesItem,
+} from '../../../store/reducers/favouritesSlice';
+import { useState } from 'react';
 
 const SalesBlock = () => {
   const { data } = useGetAllGoodsQuery();
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
-  // Get 5 random products with discount
+  // Get 4 random products with discount
   const discountedProducts = data?.filter((product) => product.discont_price);
   const shuffledProducts = discountedProducts?.sort(() => Math.random() - 0.5);
 
@@ -23,6 +28,17 @@ const SalesBlock = () => {
     dispatch(addProduct(product));
     dispatch(countTotalSum());
     toast.success('Added to Cart successfully');
+  };
+
+  const handleAddToFavourites = (event, product) => {
+    event.preventDefault();
+    dispatch(addFavouritesItem(product));
+    toast.success('Added to favourites successfully');
+  };
+
+  const handleDeleteFromFavourites = (event, product) => {
+    event.preventDefault();
+    dispatch(deleteFavouritesItem(product));
   };
 
   return (
@@ -43,6 +59,12 @@ const SalesBlock = () => {
                 <SingleProductCard
                   {...product}
                   handleAddToCart={(event) => handleAddToCart(event, product)}
+                  handleAddToFavourites={(event) =>
+                    handleAddToFavourites(event, product)
+                  }
+                  handleDeleteFromFavourites={(event) =>
+                    handleDeleteFromFavourites(event, product)
+                  }
                 />
               </Link>
             ))}

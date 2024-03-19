@@ -19,13 +19,14 @@ export default function AllProductsPage() {
     window.scrollTo(0, 0);
   }, []);
   const { theme } = useSelector((state) => state.theme);
+  const { minPrice, maxPrice, sorted } = useSelector((store) => store.filter);
+  const { favouritesProducts } = useSelector((store) => store.favourites);
 
   const dispatch = useDispatch();
 
   const [check, setCheck] = useState(false);
 
   const { data, isLoading, isError, error } = useGetAllGoodsQuery();
-  const { minPrice, maxPrice, sorted } = useSelector((store) => store.filter);
   const products = useFiltration(data, minPrice, maxPrice, sorted);
 
   // Get id of category
@@ -86,16 +87,19 @@ export default function AllProductsPage() {
             {!location?.state?.categoryId && category && category === '2' && (
               <StartBlockButton textSmallBtn="Discounted items" dontClick />
             )}
+            {!location?.state?.categoryId && category && category === '3' && (
+              <StartBlockButton textSmallBtn="Liked products" dontClick />
+            )}
           </div>
           {location && location?.state?.categoryTitle && (
             <TitleH2 text={location?.state?.categoryTitle} />
           )}
           {category === '1' && <TitleH2 text="All products" />}
           {category === '2' && <TitleH2 text="Discounted items" />}
-
+          {category === '3' && <TitleH2 text="Liked products" />}
           <div>
             <FiltrationBar
-              none={category === '2' ? 'none' : false}
+              none={category === '2' || category === '3' ? 'none' : false}
               setCheck={setCheck}
             />
           </div>
@@ -138,6 +142,24 @@ export default function AllProductsPage() {
                 category === '1' &&
                 !check &&
                 products?.map((product) => (
+                  <Link
+                    key={product.id}
+                    to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
+                  >
+                    <SingleProductCard
+                      key={product.id}
+                      {...product}
+                      handleAddToCart={(event) =>
+                        handleAddToCart(event, product)
+                      }
+                    />
+                  </Link>
+                ))}
+
+              {category &&
+                category === '3' &&
+                !check &&
+                favouritesProducts?.map((product) => (
                   <Link
                     key={product.id}
                     to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}

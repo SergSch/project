@@ -36,6 +36,7 @@ const Header = () => {
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const { productsInCart } = useSelector((store) => store.cart);
+  const { favouritesProducts } = useSelector((store) => store.favourites);
 
   const handleAddToCart = (product) => {
     dispatch(addProduct(product));
@@ -99,11 +100,21 @@ const Header = () => {
             <Navigation setModalActive={setModalActive} />
           </div>
           <div className={classes.imgBlock}>
-            <img
-              src={like}
-              alt="Heart"
-              className={theme === 'dark' ? classes.menuDark : ''}
-            />
+            <Link to={`${ROUTES.ALLPRODUCTS}?category=3`}>
+              <div className={classes.cartWrapper}>
+                <span
+                  className={classes.spanQuantity}
+                  style={{ display: productsInCart.length ? 'flex' : 'none' }}
+                >
+                  {favouritesProducts.length}
+                </span>
+                <img
+                  src={like}
+                  alt="Heart"
+                  className={theme === 'dark' ? classes.menuDark : ''}
+                />
+              </div>
+            </Link>
             <Link to={ROUTES.CART}>
               <div className={classes.cartWrapper}>
                 <span

@@ -38,11 +38,12 @@ const cartSlice = createSlice({
       state.productsInCart = [];
     },
     countTotalSum: (state) => {
-      const total = state.productsInCart.reduce(
-        (accum, currentValue) =>
-          currentValue.price * currentValue.quantity + accum,
-        0
-      );
+      const total = state.productsInCart.reduce((accum, currentValue) => {
+        let currentPrice = currentValue.discont_price
+          ? currentValue.discont_price
+          : currentValue.price;
+        return currentPrice * currentValue.quantity + accum;
+      }, 0);
       state.totalSum = total;
     },
   },

@@ -15,6 +15,8 @@ const SingleProductCard = ({
   discont_price,
   none,
   handleAddToCart,
+  handleAddToFavourites,
+  handleDeleteFromFavourites,
 }) => {
   const { theme } = useSelector((state) => state.theme);
 
@@ -31,7 +33,7 @@ const SingleProductCard = ({
         </div>
         <div className={classes.imagesWrap}>
           <div className={classes.wrapperIcons}>
-            <LikeIcon className={classes.img} />
+            <LikeIcon className={classes.img} onClick={handleAddToFavourites} />
             <CartIconNew
               className={classes.img}
               style={{ display: none ? 'none' : '' }}

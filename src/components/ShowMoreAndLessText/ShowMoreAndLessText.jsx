@@ -31,7 +31,7 @@ const ShowMoreAndLessText = ({ text, quantity }) => {
         }`}
         onClick={() => setIsShow(!isShow)}
       >
-        {isShow ? 'Show less' : 'Show more'}
+        {isShow ? 'Hide' : 'Read more'}
       </p>
     </div>
   );
