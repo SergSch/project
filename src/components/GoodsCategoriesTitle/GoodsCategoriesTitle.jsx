@@ -1,7 +1,7 @@
 import classes from './GoodsCategoriesTitle.module.css';
 import { useSelector } from 'react-redux';
 
-const GoodsCategoriesTitle = ({ text, footer }) => {
+const GoodsCategoriesTitle = ({ text, footer, none }) => {
   const { theme } = useSelector((state) => state.theme);
 
   return (
@@ -11,6 +11,7 @@ const GoodsCategoriesTitle = ({ text, footer }) => {
           ? classes.footerTitle
           : `${classes.title} ${theme === 'dark' ? classes.dark : ''}`
       }`}
+      style={{ color: none ? 'var(--black)' : '' }}
     >
       {text}
     </h4>

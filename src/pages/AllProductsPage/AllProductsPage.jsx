@@ -28,6 +28,7 @@ export default function AllProductsPage() {
 
   const { data, isLoading, isError, error } = useGetAllGoodsQuery();
   const products = useFiltration(data, minPrice, maxPrice, sorted);
+  const favouritesProductsFiltered = useFiltration(favouritesProducts, minPrice, maxPrice, sorted);
 
   // Get id of category
   let location = useLocation();
@@ -159,7 +160,7 @@ export default function AllProductsPage() {
               {category &&
                 category === '3' &&
                 !check &&
-                favouritesProducts?.map((product) => (
+                favouritesProductsFiltered?.map((product) => (
                   <Link
                     key={product.id}
                     to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}

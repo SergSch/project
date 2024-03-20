@@ -60,6 +60,8 @@ const FiltrationBar = ({ none, setCheck }) => {
           <option>by default</option>
           <option value="asc">Ascending by price</option>
           <option value="desc">Descending by price</option>
+          <option value="titleA">By title Aa-Zz</option>
+          <option value="titleZ">By title Zz-Aa</option>
         </select>
       </div>
     </form>

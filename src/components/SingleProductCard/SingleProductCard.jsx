@@ -46,14 +46,17 @@ const SingleProductCard = ({
         className={`${classes.aboutBlock} ${
           theme === 'dark' ? classes.dark : ''
         }`}
+        style={{ backgroundColor: none ? 'var(--white)' : '' }}
       >
         <GoodsCategoriesTitle
           text={`${title ? title.substring(0, 17) : ''}...`}
+          none={none ? none : ''}
         />
         <div className={classes.priceBlock}>
           <ProductAndCartTitle
             text={discont_price ? `$${discont_price}` : `$${price}`}
             weight
+            none={none ? none : ''}
           />
           {discont_price && <TitleThrough text={`${'$' + price}`} smallText />}
         </div>

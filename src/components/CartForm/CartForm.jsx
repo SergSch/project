@@ -26,7 +26,7 @@ const CartForm = ({ cart }) => {
         placeholder="Name"
         className={classes.input}
         {...register('firstname', {
-          required: 'Wrong input. Try again',
+          required: true,
           minLength: {
             value: 1,
             message: 'too short name',
@@ -41,6 +41,7 @@ const CartForm = ({ cart }) => {
           },
         })}
       />
+      <p style={{ color: 'red' }}>{errors.firstname?.message}</p>
 
       <input
         type="text"
@@ -48,13 +49,14 @@ const CartForm = ({ cart }) => {
         placeholder="Phone number"
         className={classes.input}
         {...register('phone', {
-          required: 'Wrong input. Try again',
+          required: true,
           pattern: {
             value: /\(?\+\(?49\)?[ ()]?([- ()]?\d[- ()]?){10}/g,
             message: 'Please enter correct phone number',
           },
         })}
       />
+      <p style={{ color: 'red' }}>{errors.phone?.message}</p>
 
       <input
         type="text"
@@ -62,13 +64,14 @@ const CartForm = ({ cart }) => {
         placeholder="Email"
         className={classes.input}
         {...register('email', {
-          required: 'Wrong input. Try again',
+          required: true,
           pattern: {
             value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
             message: 'Please enter correct email',
           },
         })}
       />
+      <p style={{ color: 'red' }}>{errors.email?.message}</p>
       <button className={classes.btn}>Order</button>
     </form>
   );

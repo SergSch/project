@@ -102,32 +102,34 @@ const Header = () => {
           <div className={classes.imgBlock}>
             <Link to={`${ROUTES.ALLPRODUCTS}?category=3`}>
               <div className={classes.cartWrapper}>
-                <span
-                  className={classes.spanQuantity}
-                  style={{ display: productsInCart.length ? 'flex' : 'none' }}
-                >
-                  {favouritesProducts.length}
-                </span>
                 <img
                   src={like}
                   alt="Heart"
                   className={theme === 'dark' ? classes.menuDark : ''}
                 />
+                <span
+                  className={classes.spanQuantity}
+                  style={{
+                    display: favouritesProducts.length ? 'flex' : 'none',
+                  }}
+                >
+                  {favouritesProducts.length}
+                </span>
               </div>
             </Link>
             <Link to={ROUTES.CART}>
               <div className={classes.cartWrapper}>
+                <img
+                  src={cart}
+                  alt="Cart"
+                  className={theme === 'dark' ? classes.menuDark : ''}
+                />
                 <span
                   className={classes.spanQuantity}
                   style={{ display: productsInCart.length ? 'flex' : 'none' }}
                 >
                   {productsInCart.length}
                 </span>
-                <img
-                  src={cart}
-                  alt="Cart"
-                  className={theme === 'dark' ? classes.menuDark : ''}
-                />
               </div>
             </Link>
             <img
