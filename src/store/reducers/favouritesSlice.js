@@ -23,9 +23,20 @@ const favouritesSlice = createSlice({
       );
       !productExist && state.favouritesProducts.push(action.payload);
     },
+    // checkIfProductFavourite: (state, action) => {
+    //   const productExist =
+    //     state.favouritesProducts &&
+    //     state.favouritesProducts.some(
+    //       (product) => product.id === action.payload.id
+    //     );
+    //   return productExist;
+    // },
   },
 });
 
-export const { deleteFavouritesItem, addFavouritesItem } =
-  favouritesSlice.actions;
+export const {
+  deleteFavouritesItem,
+  addFavouritesItem,
+  checkIfProductFavourite,
+} = favouritesSlice.actions;
 export default favouritesSlice.reducer;

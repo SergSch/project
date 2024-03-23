@@ -107,14 +107,22 @@ const Header = () => {
                   alt="Heart"
                   className={theme === 'dark' ? classes.menuDark : ''}
                 />
-                <span
+                {/* <span
                   className={classes.spanQuantity}
                   style={{
-                    display: favouritesProducts.length ? 'flex' : 'none',
+                    display:
+                      favouritesProducts && favouritesProducts?.length
+                        ? 'flex'
+                        : 'none',
                   }}
                 >
                   {favouritesProducts.length}
-                </span>
+                </span> */}
+                {favouritesProducts && favouritesProducts.length && (
+                  <span className={classes.spanQuantity}>
+                    {favouritesProducts.length}
+                  </span>
+                )}
               </div>
             </Link>
             <Link to={ROUTES.CART}>
@@ -124,9 +132,20 @@ const Header = () => {
                   alt="Cart"
                   className={theme === 'dark' ? classes.menuDark : ''}
                 />
+                {/* {productsInCart && productsInCart.length && (
+                  <span className={classes.spanQuantity}>
+                    {productsInCart.length}
+                  </span>
+                )} */}
+
                 <span
                   className={classes.spanQuantity}
-                  style={{ display: productsInCart.length ? 'flex' : 'none' }}
+                  style={{
+                    display:
+                      productsInCart && productsInCart?.length
+                        ? 'flex'
+                        : 'none',
+                  }}
                 >
                   {productsInCart.length}
                 </span>

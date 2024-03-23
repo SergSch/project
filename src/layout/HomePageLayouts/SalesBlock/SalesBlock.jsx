@@ -10,16 +10,18 @@ import { addProduct, countTotalSum } from '../../../store/reducers/cartSlice';
 import toast from 'react-hot-toast';
 import {
   addFavouritesItem,
+  checkIfProductFavourite,
   deleteFavouritesItem,
 } from '../../../store/reducers/favouritesSlice';
-import { useState } from 'react';
 
 const SalesBlock = () => {
   const { data } = useGetAllGoodsQuery();
   const { theme } = useSelector((state) => state.theme);
+  const { favourites } = useSelector((state) => state.favourites);
+
   const dispatch = useDispatch();
 
-  // Get 4 random products with discount
+  // Get random products with discount
   const discountedProducts = data?.filter((product) => product.discont_price);
   const shuffledProducts = discountedProducts?.sort(() => Math.random() - 0.5);
 
@@ -32,13 +34,16 @@ const SalesBlock = () => {
 
   const handleAddToFavourites = (event, product) => {
     event.preventDefault();
-    dispatch(addFavouritesItem(product));
-    toast.success('Added to favourites successfully');
-  };
-
-  const handleDeleteFromFavourites = (event, product) => {
-    event.preventDefault();
-    dispatch(deleteFavouritesItem(product));
+    const isProductFavourite = favourites?.some(
+      (elem) => elem.id === product.id
+    );
+    if (isProductFavourite) {
+      dispatch(deleteFavouritesItem(product));
+      toast.success('Delete from favourites successfully');
+    } else {
+      dispatch(addFavouritesItem(product));
+      toast.success('Added to favourites successfully');
+    }
   };
 
   return (
@@ -61,9 +66,6 @@ const SalesBlock = () => {
                   handleAddToCart={(event) => handleAddToCart(event, product)}
                   handleAddToFavourites={(event) =>
                     handleAddToFavourites(event, product)
-                  }
-                  handleDeleteFromFavourites={(event) =>
-                    handleDeleteFromFavourites(event, product)
                   }
                 />
               </Link>

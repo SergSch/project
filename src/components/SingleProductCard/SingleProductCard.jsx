@@ -16,7 +16,6 @@ const SingleProductCard = ({
   none,
   handleAddToCart,
   handleAddToFavourites,
-  handleDeleteFromFavourites,
 }) => {
   const { theme } = useSelector((state) => state.theme);
 

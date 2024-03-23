@@ -12,6 +12,7 @@ import FiltrationBar from '../../components/FiltrationBar/FiltrationBar';
 import { useFiltration } from '../../customHooks/useFiltration';
 import { addProduct, countTotalSum } from '../../store/reducers/cartSlice';
 import toast from 'react-hot-toast';
+import { blockBtnText } from '../../utils/functions';
 
 export default function AllProductsPage() {
   // opened page is displayed at the top
@@ -28,7 +29,12 @@ export default function AllProductsPage() {
 
   const { data, isLoading, isError, error } = useGetAllGoodsQuery();
   const products = useFiltration(data, minPrice, maxPrice, sorted);
-  const favouritesProductsFiltered = useFiltration(favouritesProducts, minPrice, maxPrice, sorted);
+  const favouritesProductsFiltered = useFiltration(
+    favouritesProducts,
+    minPrice,
+    maxPrice,
+    sorted
+  );
 
   // Get id of category
   let location = useLocation();
@@ -82,14 +88,11 @@ export default function AllProductsPage() {
                 />
               </>
             )}
-            {!location?.state?.categoryId && category && category === '1' && (
-              <StartBlockButton textSmallBtn="All products" dontClick />
-            )}
-            {!location?.state?.categoryId && category && category === '2' && (
-              <StartBlockButton textSmallBtn="Discounted items" dontClick />
-            )}
-            {!location?.state?.categoryId && category && category === '3' && (
-              <StartBlockButton textSmallBtn="Liked products" dontClick />
+            {blockBtnText(category) && (
+              <StartBlockButton
+                textSmallBtn={blockBtnText(category)}
+                dontClick
+              />
             )}
           </div>
           {location && location?.state?.categoryTitle && (

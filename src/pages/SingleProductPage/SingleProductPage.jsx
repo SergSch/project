@@ -71,6 +71,7 @@ const SingleProductPage = () => {
   const existingProduct = productsInCart?.find(
     (product) => data && data.length > 0 && product.id === data[0]?.id
   );
+
   const quantityInCart = existingProduct ? existingProduct.quantity : 0;
 
   return (
