@@ -63,7 +63,9 @@ const Header = () => {
               onClick={() => setModalActive(false)}
             />
           </div>
-          <SingleProductCard {...biggestDiscountProduct} none />
+          {biggestDiscountProduct && (
+            <SingleProductCard product={biggestDiscountProduct} none />
+          )}
           <button
             className={classes.btn}
             onClick={() => handleAddToCart(biggestDiscountProduct)}
@@ -107,7 +109,7 @@ const Header = () => {
                   alt="Heart"
                   className={theme === 'dark' ? classes.menuDark : ''}
                 />
-                {/* <span
+                <span
                   className={classes.spanQuantity}
                   style={{
                     display:
@@ -117,12 +119,7 @@ const Header = () => {
                   }}
                 >
                   {favouritesProducts.length}
-                </span> */}
-                {favouritesProducts && favouritesProducts.length && (
-                  <span className={classes.spanQuantity}>
-                    {favouritesProducts.length}
-                  </span>
-                )}
+                </span>
               </div>
             </Link>
             <Link to={ROUTES.CART}>
@@ -132,11 +129,6 @@ const Header = () => {
                   alt="Cart"
                   className={theme === 'dark' ? classes.menuDark : ''}
                 />
-                {/* {productsInCart && productsInCart.length && (
-                  <span className={classes.spanQuantity}>
-                    {productsInCart.length}
-                  </span>
-                )} */}
 
                 <span
                   className={classes.spanQuantity}

@@ -6,7 +6,6 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
 import AllProductsPage from './pages/AllProductsPage/AllProductsPage';
-import AllSalesPage from './pages/AllSalesPage/AllSalesPage';
 import SingleProductPage from './pages/SingleProductPage/SingleProductPage';
 import { FaAnglesUp } from 'react-icons/fa6';
 import { useEffect, useRef } from 'react';
@@ -38,7 +37,6 @@ function App() {
         <Route path={ROUTES.CATEGORIES} element={<CategoriesPage />} />
         <Route path={ROUTES.ALLPRODUCTS} element={<AllProductsPage />} />
         <Route path={ROUTES.PRODUCT} element={<SingleProductPage />} />
-        <Route path={ROUTES.ALLSALES} element={<AllSalesPage />} />
         <Route path={ROUTES.CART} element={<CartPage />} />
         <Route path={ROUTES.NOTFOUNDPAGE} element={<NotFoundPage />} />
       </Routes>

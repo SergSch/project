@@ -72,13 +72,31 @@
   display: none;
 }
 
+.img {
+  fill: white;
+  transition: fill 0.3s;
+  cursor: pointer;
+  width: 100px;
+}
+.darkImg {
+  fill: var(--white);
+}
+
+.img:hover {
+  fill: var(--black);
+}
+.darkImg:hover {
+  fill: var(--grey);
+}
+
 /* Dark mode */
 .dark {
   background-color: var(--black);
 }
-.menuDark {
+/* .menuDark {
   filter: invert(1);
-}
+  stroke: var(--white);
+} */
 
 /* Mobile */
 @media (max-width: 1439px) {

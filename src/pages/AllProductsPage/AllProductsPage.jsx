@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useGetAllGoodsQuery } from '../../store/reducers/apiGoodsSlice';
 import classes from './AllProductsPage.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TitleH2 from '../../components/TitleH2/TitleH2';
 import SingleProductCard from './../../components/SingleProductCard/SingleProductCard';
 import { Link, useLocation } from 'react-router-dom';
@@ -10,8 +10,6 @@ import StartBlockButton from '../../UI/StartBlockButton/StartBlockButton';
 import Line from '../../UI/Line/Line';
 import FiltrationBar from '../../components/FiltrationBar/FiltrationBar';
 import { useFiltration } from '../../customHooks/useFiltration';
-import { addProduct, countTotalSum } from '../../store/reducers/cartSlice';
-import toast from 'react-hot-toast';
 import { blockBtnText } from '../../utils/functions';
 
 export default function AllProductsPage() {
@@ -22,8 +20,6 @@ export default function AllProductsPage() {
   const { theme } = useSelector((state) => state.theme);
   const { minPrice, maxPrice, sorted } = useSelector((store) => store.filter);
   const { favouritesProducts } = useSelector((store) => store.favourites);
-
-  const dispatch = useDispatch();
 
   const [check, setCheck] = useState(false);
 
@@ -58,13 +54,6 @@ export default function AllProductsPage() {
   const filteredBySales = products?.filter(
     (product) => product.discont_price !== null
   );
-
-  const handleAddToCart = (event, product) => {
-    event.preventDefault();
-    dispatch(addProduct(product));
-    dispatch(countTotalSum());
-    toast.success('Added to Cart successfully');
-  };
 
   return (
     <div className={theme === 'dark' ? classes.dark : ''}>
@@ -119,13 +108,7 @@ export default function AllProductsPage() {
                       key={product.id}
                       to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
                     >
-                      <SingleProductCard
-                        key={product.id}
-                        {...product}
-                        handleAddToCart={(event) =>
-                          handleAddToCart(event, product)
-                        }
-                      />
+                      <SingleProductCard product={product} />
                     </Link>
                   ))
                 : filteredByCategory.map((product) => (
@@ -133,13 +116,7 @@ export default function AllProductsPage() {
                       key={product.id}
                       to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
                     >
-                      <SingleProductCard
-                        key={product.id}
-                        {...product}
-                        handleAddToCart={(event) =>
-                          handleAddToCart(event, product)
-                        }
-                      />
+                      <SingleProductCard product={product} />
                     </Link>
                   ))}
               {category &&
@@ -150,13 +127,7 @@ export default function AllProductsPage() {
                     key={product.id}
                     to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
                   >
-                    <SingleProductCard
-                      key={product.id}
-                      {...product}
-                      handleAddToCart={(event) =>
-                        handleAddToCart(event, product)
-                      }
-                    />
+                    <SingleProductCard product={product} />
                   </Link>
                 ))}
 
@@ -168,13 +139,7 @@ export default function AllProductsPage() {
                     key={product.id}
                     to={`${ROUTES.PRODUCT.replace(':id', product.id)}`}
                   >
-                    <SingleProductCard
-                      key={product.id}
-                      {...product}
-                      handleAddToCart={(event) =>
-                        handleAddToCart(event, product)
-                      }
-                    />
+                    <SingleProductCard product={product} />
                   </Link>
                 ))}
             </div>

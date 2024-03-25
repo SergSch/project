@@ -4,20 +4,49 @@ import GoodsCategoriesTitle from '../GoodsCategoriesTitle/GoodsCategoriesTitle';
 import TitleThrough from '../TitleThrough/TitleThrough';
 import classes from './SingleProductCard.module.css';
 import ProductAndCartTitle from './../ProductAndCartTitle/ProductAndCartTitle';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as LikeIcon } from '../../assets/images/header/like.svg';
 import { ReactComponent as CartIconNew } from '../../assets/images/cart.svg';
+import { addProduct, countTotalSum } from '../../store/reducers/cartSlice';
+import toast from 'react-hot-toast';
+import {
+  addFavouritesItem,
+  deleteFavouritesItem,
+} from '../../store/reducers/favouritesSlice';
 
-const SingleProductCard = ({
-  title,
-  image,
-  price,
-  discont_price,
-  none,
-  handleAddToCart,
-  handleAddToFavourites,
-}) => {
+const SingleProductCard = ({ product, none }) => {
   const { theme } = useSelector((state) => state.theme);
+  const { id, title, image, price, discont_price } = product;
+
+  const isCheckedFavourites = useSelector((state) => {
+    return state.favourites.favouritesProducts.some(
+      (favouriteProduct) => favouriteProduct.id === id
+    );
+  });
+
+  const isCheckedProductInCart = useSelector((state) => {
+    return state.cart.productsInCart.some((product) => product.id === id);
+  });
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    dispatch(addProduct(product));
+    dispatch(countTotalSum());
+    toast.success('Added to Cart successfully');
+  };
+
+  const handleAddToFavourites = (event) => {
+    event.preventDefault();
+    if (isCheckedFavourites) {
+      dispatch(deleteFavouritesItem(product));
+      toast.success('Delete from favourites successfully');
+    } else {
+      dispatch(addFavouritesItem(product));
+      toast.success('Added to favourites successfully');
+    }
+  };
 
   const percentDiscount = Math.round(((price - discont_price) / price) * 100);
 
@@ -32,11 +61,22 @@ const SingleProductCard = ({
         </div>
         <div className={classes.imagesWrap}>
           <div className={classes.wrapperIcons}>
-            <LikeIcon className={classes.img} onClick={handleAddToFavourites} />
+            <LikeIcon
+              className={classes.img}
+              onClick={handleAddToFavourites}
+              style={{
+                fill: isCheckedFavourites ? 'var(--green)' : '',
+                stroke: isCheckedFavourites ? 'var(--green)' : '',
+              }}
+            />
             <CartIconNew
               className={classes.img}
-              style={{ display: none ? 'none' : '' }}
               onClick={handleAddToCart}
+              style={{
+                display: none ? 'none' : '',
+                fill: isCheckedProductInCart ? 'var(--green)' : '',
+                stroke: isCheckedProductInCart ? 'var(--green)' : '',
+              }}
             />
           </div>
         </div>

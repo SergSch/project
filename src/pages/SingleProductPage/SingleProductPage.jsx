@@ -1,6 +1,5 @@
 import ProductAndCartTitle from '../../components/ProductAndCartTitle/ProductAndCartTitle';
 import classes from './SingleProductPage.module.css';
-import like from '../../assets/images/header/like.svg';
 import { useGetSingleProductQuery } from '../../store/reducers/apiGoodsSlice';
 import TitleH2 from '../../components/TitleH2/TitleH2';
 import TitleThrough from '../../components/TitleThrough/TitleThrough';
@@ -24,6 +23,11 @@ import StartBlockButton from '../../UI/StartBlockButton/StartBlockButton';
 import Line from '../../UI/Line/Line';
 import { ROUTES } from '../../utils/routes';
 import { useGetAllCategoriesQuery } from '../../store/reducers/apiCatigoriesSlice';
+import {
+  addFavouritesItem,
+  deleteFavouritesItem,
+} from '../../store/reducers/favouritesSlice';
+import { ReactComponent as LikeIcon } from '../../assets/images/header/like.svg';
 
 const SingleProductPage = () => {
   // opened page is displayed at the top
@@ -45,6 +49,12 @@ const SingleProductPage = () => {
     (category) => category.id === (data && data[0]?.categoryId)
   );
 
+  const isCheckedFavourites = useSelector((state) => {
+    return state.favourites.favouritesProducts.some(
+      (favouriteProduct) => favouriteProduct.id === data[0]?.id
+    );
+  });
+
   const { productsInCart } = useSelector((store) => store.cart);
 
   const dispatch = useDispatch();
@@ -52,6 +62,17 @@ const SingleProductPage = () => {
     dispatch(addProduct(data));
     dispatch(countTotalSum());
     toast.success('Added to Cart successfully');
+  };
+
+  const handleAddToFavourites = (event, product) => {
+    event.preventDefault();
+    if (isCheckedFavourites) {
+      dispatch(deleteFavouritesItem(product));
+      toast.success('Delete from favourites successfully');
+    } else {
+      dispatch(addFavouritesItem(product));
+      toast.success('Added to favourites successfully');
+    }
   };
 
   const handleDecreaseProduct = (product) => {
@@ -131,10 +152,16 @@ const SingleProductPage = () => {
                 {data && data.length > 0 && (
                   <ProductAndCartTitle text={data[0]?.title} />
                 )}
-                <img
-                  src={like}
-                  alt="Heart"
-                  className={theme === 'dark' ? classes.menuDark : ''}
+
+                <LikeIcon
+                  className={`${classes.img} ${
+                    theme === 'dark' ? classes.darkImg : ''
+                  }`}
+                  onClick={(e) => handleAddToFavourites(e, data[0])}
+                  style={{
+                    fill: isCheckedFavourites ? 'var(--green)' : '',
+                    stroke: isCheckedFavourites ? 'var(--green)' : '',
+                  }}
                 />
               </div>
               <div className={classes.priceBlock}>
