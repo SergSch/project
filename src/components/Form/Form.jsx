@@ -2,6 +2,7 @@ import classes from './Form.module.css';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import error from '../../assets/images/icons/Error.svg';
+import { useOrderDiscountMutation } from '../../store/reducers/apiPostSlice';
 
 const Form = () => {
   const {
@@ -11,8 +12,10 @@ const Form = () => {
     formState: { errors },
   } = useForm();
 
+  const [orderProduct] = useOrderDiscountMutation();
+
   const handleForm = (data) => {
-    console.log(data);
+    orderProduct(data);
     reset();
     toast.success('You will receive your discount by email');
   };

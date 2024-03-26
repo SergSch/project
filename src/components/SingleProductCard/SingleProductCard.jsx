@@ -66,7 +66,6 @@ const SingleProductCard = ({ product, none }) => {
               onClick={handleAddToFavourites}
               style={{
                 fill: isCheckedFavourites ? 'var(--green)' : '',
-                stroke: isCheckedFavourites ? 'var(--green)' : '',
               }}
             />
             <CartIconNew
@@ -75,7 +74,6 @@ const SingleProductCard = ({ product, none }) => {
               style={{
                 display: none ? 'none' : '',
                 fill: isCheckedProductInCart ? 'var(--green)' : '',
-                stroke: isCheckedProductInCart ? 'var(--green)' : '',
               }}
             />
           </div>

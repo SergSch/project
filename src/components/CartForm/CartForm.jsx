@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import classes from './CartForm.module.css';
+import { useOrderProductMutation } from '../../store/reducers/apiPostSlice';
 
 const CartForm = ({ cart }) => {
   const {
@@ -10,9 +11,10 @@ const CartForm = ({ cart }) => {
   } = useForm();
 
   const { handleClearCart, setModalActive } = cart;
+  const [orderProduct] = useOrderProductMutation();
 
   const handleForm = (data) => {
-    console.log(data);
+    orderProduct(data);
     handleClearCart();
     setModalActive(true);
     reset();

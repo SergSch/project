@@ -50,6 +50,7 @@ const SingleProductPage = () => {
   );
 
   const isCheckedFavourites = useSelector((state) => {
+    if (!data || !data.length) return false;
     return state.favourites.favouritesProducts.some(
       (favouriteProduct) => favouriteProduct.id === data[0]?.id
     );
@@ -160,7 +161,6 @@ const SingleProductPage = () => {
                   onClick={(e) => handleAddToFavourites(e, data[0])}
                   style={{
                     fill: isCheckedFavourites ? 'var(--green)' : '',
-                    stroke: isCheckedFavourites ? 'var(--green)' : '',
                   }}
                 />
               </div>

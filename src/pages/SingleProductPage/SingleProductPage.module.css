@@ -76,7 +76,7 @@
   fill: white;
   transition: fill 0.3s;
   cursor: pointer;
-  width: 100px;
+  min-width: fit-content;
 }
 .darkImg {
   fill: var(--white);

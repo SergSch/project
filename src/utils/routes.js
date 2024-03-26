@@ -7,4 +7,6 @@ export const ROUTES = {
   CATEGORY: '/categories/:id',
   CART: '/cart',
   NOTFOUNDPAGE: '/*',
+  ORDER_DISCOUNT: '/sale/send',
+  ORDER_PRODUCT: '/order/send',
 };
