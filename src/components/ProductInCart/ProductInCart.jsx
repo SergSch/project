@@ -8,6 +8,7 @@ import ProductAndCartTitle from '../ProductAndCartTitle/ProductAndCartTitle';
 import TitleThrough from '../TitleThrough/TitleThrough';
 
 const ProductInCart = ({
+  id,
   image,
   title,
   price,
@@ -18,6 +19,10 @@ const ProductInCart = ({
   handleDecreaseProduct,
 }) => {
   const { theme } = useSelector((state) => state.theme);
+
+  // get dayDiscounted price
+  let discountedPrice = id === 14 ? price / 2 : null;
+
   return (
     <div className={classes.wrapper}>
       <div
@@ -46,10 +51,19 @@ const ProductInCart = ({
           />
           <div className={classes.priceBlock}>
             <ProductAndCartTitle
-              text={discont_price ? `$${discont_price}` : `$${price}`}
+              text={
+                discountedPrice
+                  ? `$${discountedPrice}`
+                  : discont_price
+                  ? `$${discont_price}`
+                  : `$${price}`
+              }
               weight
             />
             {discont_price && (
+              <TitleThrough text={`${'$' + price}`} smallText />
+            )}
+            {discountedPrice && (
               <TitleThrough text={`${'$' + price}`} smallText />
             )}
           </div>

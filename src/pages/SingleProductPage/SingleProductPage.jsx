@@ -49,6 +49,7 @@ const SingleProductPage = () => {
     (category) => category.id === (data && data[0]?.categoryId)
   );
 
+  // Check if there is product in favourites
   const isCheckedFavourites = useSelector((state) => {
     if (!data || !data.length) return false;
     return state.favourites.favouritesProducts.some(
@@ -88,6 +89,14 @@ const SingleProductPage = () => {
     data && data.length > 0
       ? Math.round(((price - discountPrice) / price) * 100)
       : null;
+
+  // get dayDiscounted price
+  let discountedPrice;
+  if (!isLoading && data && data.length > 0) {
+    const isProductOfDay = id === '14';
+    discountedPrice = isProductOfDay ? data[0]?.price / 2 : null;
+  }
+  const dayDiscountedPrice = 50;
 
   // Checking of existens of current product in the cart
   const existingProduct = productsInCart?.find(
@@ -146,6 +155,9 @@ const SingleProductPage = () => {
                   {discountPrice && (
                     <ElementDiscount discount={percentDiscount} />
                   )}
+                  {discountedPrice && (
+                    <ElementDiscount discount={dayDiscountedPrice} />
+                  )}
                 </div>
               </div>
 
@@ -166,13 +178,23 @@ const SingleProductPage = () => {
               </div>
               <div className={classes.priceBlock}>
                 <TitleH2
-                  text={discountPrice ? `$${discountPrice}` : `$${price}`}
+                  text={
+                    discountedPrice
+                      ? `$${discountedPrice}`
+                      : discountPrice
+                      ? `$${discountPrice}`
+                      : `$${price}`
+                  }
                 />
 
                 {discountPrice && <TitleThrough text={`${'$' + price}`} />}
+                {discountedPrice && <TitleThrough text={`${'$' + price}`} />}
                 <div className={classes.discountWrap}>
                   {discountPrice && (
                     <ElementDiscount discount={percentDiscount} />
+                  )}
+                  {discountedPrice && (
+                    <ElementDiscount discount={dayDiscountedPrice} />
                   )}
                 </div>
               </div>

@@ -11,6 +11,7 @@ import Line from '../../UI/Line/Line';
 import FiltrationBar from '../../components/FiltrationBar/FiltrationBar';
 import { useFiltration } from '../../customHooks/useFiltration';
 import { blockBtnText } from '../../utils/functions';
+import Sceleton from '../../components/Sceleton/Sceleton';
 
 export default function AllProductsPage() {
   // opened page is displayed at the top
@@ -97,9 +98,7 @@ export default function AllProductsPage() {
             />
           </div>
           {isLoading ? (
-            <div className="loading">
-              <div className="loading_content"></div>
-            </div>
+            <Sceleton />
           ) : (
             <div className={classes.productsWrapper}>
               {check || category === '2'

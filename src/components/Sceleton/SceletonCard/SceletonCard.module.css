@@ -1,0 +1,34 @@
+.wrapper {
+  margin: auto auto;
+  width: 100%;
+  height: 284px;
+  background: var(--light-grey);
+  border-radius: 12px;
+}
+@media (max-width: 1439px) {
+  .wrapper {
+    width: 225px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 999px) {
+  .wrapper {
+    width: 354px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    width: 210px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 479px) {
+  .wrapper {
+    width: 320px;
+    height: 220px;
+  }
+}

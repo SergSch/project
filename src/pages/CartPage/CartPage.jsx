@@ -29,8 +29,16 @@ const CartPage = () => {
 
   const { theme } = useSelector((state) => state.theme);
   const { productsInCart } = useSelector((store) => store.cart);
+  console.log(productsInCart);
   const { totalSum } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
+  // get dayDiscounted price
+  let discountedPrice;
+  if (productsInCart) {
+    const isProductOfDay = productsInCart.find((product) => product.id === 14);
+    discountedPrice = isProductOfDay ? isProductOfDay.price / 2 : null;
+  }
+  console.log(discountedPrice);
 
   const handleAddToCart = (product) => {
     dispatch(addProduct(product));

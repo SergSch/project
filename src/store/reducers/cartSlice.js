@@ -39,9 +39,13 @@ const cartSlice = createSlice({
     },
     countTotalSum: (state) => {
       const total = state.productsInCart.reduce((accum, currentValue) => {
+        const isProductOfDay = currentValue.id === 14;
         let currentPrice = currentValue.discont_price
           ? currentValue.discont_price
           : currentValue.price;
+        if (isProductOfDay) {
+          currentPrice = currentValue.price / 2;
+        }
         return currentPrice * currentValue.quantity + accum;
       }, 0);
       state.totalSum = total;

@@ -18,6 +18,13 @@ const SingleProductCard = ({ product, none }) => {
   const { theme } = useSelector((state) => state.theme);
   const { id, title, image, price, discont_price } = product;
 
+  // get dayDiscounted price
+  function isDiscountedProduct() {
+    return id === 14 ? price / 2 : null;
+  }
+  const discountedPrice = isDiscountedProduct();
+  const dayDiscountedPrice = 50;
+
   const isCheckedFavourites = useSelector((state) => {
     return state.favourites.favouritesProducts.some(
       (favouriteProduct) => favouriteProduct.id === id
@@ -58,6 +65,7 @@ const SingleProductCard = ({ product, none }) => {
       >
         <div className={classes.elemDiscontWrap}>
           {discont_price && <ElementDiscount discount={percentDiscount} />}
+          {discountedPrice && <ElementDiscount discount={dayDiscountedPrice} />}
         </div>
         <div className={classes.imagesWrap}>
           <div className={classes.wrapperIcons}>
@@ -91,11 +99,20 @@ const SingleProductCard = ({ product, none }) => {
         />
         <div className={classes.priceBlock}>
           <ProductAndCartTitle
-            text={discont_price ? `$${discont_price}` : `$${price}`}
+            text={
+              discountedPrice
+                ? `$${discountedPrice}`
+                : discont_price
+                ? `$${discont_price}`
+                : `$${price}`
+            }
             weight
             none={none ? none : ''}
           />
           {discont_price && <TitleThrough text={`${'$' + price}`} smallText />}
+          {discountedPrice && (
+            <TitleThrough text={`${'$' + price}`} smallText />
+          )}
         </div>
       </div>
     </div>

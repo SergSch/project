@@ -11,14 +11,7 @@ export const apiGoodsSlice = createApi({
     getSingleProduct: builder.query({
       query: (id) => `/products/${id}`,
     }),
-    getSingleGoods: builder.query({
-      query: (id) => `/products/${id}`,
-    }),
   }),
 });
 
-export const {
-  useGetAllGoodsQuery,
-  useGetSingleProductQuery,
-  useGetSingleGoodsQuery,
-} = apiGoodsSlice;
+export const { useGetAllGoodsQuery, useGetSingleProductQuery } = apiGoodsSlice;

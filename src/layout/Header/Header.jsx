@@ -13,25 +13,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../../store/reducers/themeSlice';
 import { useClickOutsaide } from '../../customHooks/useClickOutSide';
 import whiteCross from '../../assets/images/icons/whiteCross.svg';
-import useFindBiggestDiscount from './../../customHooks/useFindBiggestDiscount';
 import ProductModal from './../../components/ProductModal/ProductModal';
 import SingleProductCard from './../../components/SingleProductCard/SingleProductCard';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../utils/routes';
 import { addProduct, countTotalSum } from '../../store/reducers/cartSlice';
 import toast from 'react-hot-toast';
+import { useGetAllGoodsQuery } from '../../store/reducers/apiGoodsSlice';
 
 const Header = () => {
   // Set mobile menu
   const [isOpen, setIsOpen] = useState(false);
+
+  // close mobile menu
   const menuRef = useRef(null);
   useClickOutsaide(menuRef, () => {
     setIsOpen(false);
   });
 
   const [modalActive, setModalActive] = useState(false);
-  const [biggestDiscountProduct, maxDiscountPercentage] =
-    useFindBiggestDiscount();
+
+  const { data } = useGetAllGoodsQuery();
 
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
@@ -54,7 +56,7 @@ const Header = () => {
         <div className={classes.modalWrap}>
           <div className={classes.titleBlock}>
             <h3 className={classes.titleH3}>
-              {maxDiscountPercentage}% discount on product of the day!
+              50% discount on product of the day!
             </h3>
             <img
               src={whiteCross}
@@ -63,12 +65,10 @@ const Header = () => {
               onClick={() => setModalActive(false)}
             />
           </div>
-          {biggestDiscountProduct && (
-            <SingleProductCard product={biggestDiscountProduct} none />
-          )}
+          {data && <SingleProductCard product={data[13]} none />}
           <button
             className={classes.btn}
-            onClick={() => handleAddToCart(biggestDiscountProduct)}
+            onClick={() => handleAddToCart(data[13])}
           >
             Add to cart
           </button>
